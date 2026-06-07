@@ -1,7 +1,3 @@
-/**
- * ZenSpace — Global TypeScript Types
- */
-
 // ─── Auth ──────────────────────────────────────────────────────────────────
 export interface User {
   id: string;
@@ -31,13 +27,13 @@ export interface MeditationSession {
 }
 
 export type MeditationCategory =
-  | 'sleep'
-  | 'focus'
-  | 'anxiety'
-  | 'morning'
-  | 'breathing'
-  | 'mindfulness'
-  | 'stress';
+  | "sleep"
+  | "focus"
+  | "anxiety"
+  | "morning"
+  | "breathing"
+  | "mindfulness"
+  | "stress";
 
 // ─── Quote (from API) ─────────────────────────────────────────────────────
 export interface DailyQuote {
@@ -49,7 +45,7 @@ export interface DailyQuote {
 
 // ─── Settings ─────────────────────────────────────────────────────────────
 export interface AppSettings {
-  theme: 'light' | 'dark' | 'system';
+  theme: "light" | "dark" | "system";
   notificationsEnabled: boolean;
   dailyReminderTime: string; // "HH:MM"
   soundEnabled: boolean;
@@ -67,13 +63,13 @@ export interface Reminder {
 
 // ─── Navigation ───────────────────────────────────────────────────────────
 export type RootStackParamList = {
-  '(auth)/login': undefined;
-  '(auth)/signup': undefined;
-  '(tabs)': undefined;
-  '(tabs)/index': undefined;
-  '(tabs)/favorites': undefined;
-  'settings/index': undefined;
-  'settings/theme': undefined;
-  'settings/notifications': undefined;
-  'meditation/[id]': { id: string };
+  "(auth)/login": undefined;
+  "(auth)/signup": undefined;
+  "(tabs)": undefined;
+  "(tabs)/index": undefined;
+  "(tabs)/favorites": undefined;
+  "settings/index": undefined;
+  "settings/theme": undefined;
+  "settings/notifications": undefined;
+  "meditation/[id]": { id: string };
 };

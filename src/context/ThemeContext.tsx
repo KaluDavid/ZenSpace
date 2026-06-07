@@ -1,19 +1,14 @@
-/**
- * ThemeContext — Global light/dark mode management
- * Uses React Context API as required by the capstone specification.
- */
-
-import React, {
+import Colors, { ColorScheme } from "@/constants/Colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
   createContext,
-  useContext,
-  useState,
-  useEffect,
   ReactNode,
-} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Colors, { ColorScheme } from '@/constants/Colors';
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
-type ThemeMode = 'light' | 'dark';
+type ThemeMode = "light" | "dark";
 
 interface ThemeContextValue {
   theme: ThemeMode;
@@ -25,17 +20,17 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-const THEME_STORAGE_KEY = '@zenspace_theme';
+const THEME_STORAGE_KEY = "@zenspace_theme";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<ThemeMode>('light');
+  const [theme, setThemeState] = useState<ThemeMode>("light");
 
   // Load persisted theme on mount
   useEffect(() => {
     (async () => {
       try {
         const stored = await AsyncStorage.getItem(THEME_STORAGE_KEY);
-        if (stored === 'dark' || stored === 'light') {
+        if (stored === "dark" || stored === "light") {
           setThemeState(stored);
         }
       } catch {
@@ -54,7 +49,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -62,7 +57,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       value={{
         theme,
         colors: Colors[theme],
-        isDark: theme === 'dark',
+        isDark: theme === "dark",
         toggleTheme,
         setTheme,
       }}
@@ -79,7 +74,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 export function useTheme(): ThemeContextValue {
   const ctx = useContext(ThemeContext);
   if (!ctx) {
-    throw new Error('useTheme must be used inside <ThemeProvider>');
+    throw new Error("useTheme must be used inside <ThemeProvider>");
   }
   return ctx;
 }

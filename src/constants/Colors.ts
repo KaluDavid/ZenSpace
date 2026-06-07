@@ -1,48 +1,41 @@
-/**
- * ZenSpace Design System — Color Palette
- * Primary: Deep Indigo / Soft Lavender
- * Accent: Warm Gold
- * Semantic: Success, Error, Warning
- */
-
 const palette = {
-  indigo900: '#0d0d2b',
-  indigo800: '#1a1a2e',
-  indigo700: '#16213e',
-  indigo600: '#0f3460',
-  indigo500: '#533483',
-  indigo400: '#6c63ff',
-  indigo300: '#a29bfe',
-  indigo200: '#d6d0ff',
-  indigo100: '#ede9ff',
+  indigo900: "#0d0d2b",
+  indigo800: "#1a1a2e",
+  indigo700: "#16213e",
+  indigo600: "#0f3460",
+  indigo500: "#533483",
+  indigo400: "#6c63ff",
+  indigo300: "#a29bfe",
+  indigo200: "#d6d0ff",
+  indigo100: "#ede9ff",
 
-  gold500: '#f6c90e',
-  gold400: '#fddb3a',
-  gold300: '#ffeaa7',
+  gold500: "#f6c90e",
+  gold400: "#fddb3a",
+  gold300: "#ffeaa7",
 
-  teal500: '#00cec9',
-  teal400: '#55efc4',
+  teal500: "#00cec9",
+  teal400: "#55efc4",
 
-  coral500: '#e17055',
-  coral400: '#fab1a0',
+  coral500: "#e17055",
+  coral400: "#fab1a0",
 
-  white: '#ffffff',
-  offWhite: '#f8f7ff',
-  gray100: '#f1f0f7',
-  gray200: '#dddbe8',
-  gray300: '#b2afc7',
-  gray400: '#7c78a0',
-  gray500: '#4a4770',
-  gray600: '#2d2b50',
+  white: "#ffffff",
+  offWhite: "#f8f7ff",
+  gray100: "#f1f0f7",
+  gray200: "#dddbe8",
+  gray300: "#b2afc7",
+  gray400: "#7c78a0",
+  gray500: "#4a4770",
+  gray600: "#2d2b50",
 
-  success: '#00b894',
-  error: '#d63031',
-  warning: '#fdcb6e',
+  success: "#00b894",
+  error: "#d63031",
+  warning: "#fdcb6e",
 
-  dark900: '#0a0a1a',
-  dark800: '#12122a',
-  dark700: '#1e1e3a',
-  dark600: '#2a2a50',
+  dark900: "#0a0a1a",
+  dark800: "#12122a",
+  dark700: "#1e1e3a",
+  dark600: "#2a2a50",
 };
 
 export const Colors = {

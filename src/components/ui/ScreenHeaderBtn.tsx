@@ -1,14 +1,7 @@
-/**
- * ZenSpace — ScreenHeaderBtn
- * Renders the settings/menu icon in the app header.
- * Grading requirement: Task 22 — evidence-menu-icon.png
- */
-
-import React from 'react';
-import { TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/context/ThemeContext';
-import { BorderRadius } from '@/constants/Theme';
+import { BorderRadius } from "@/constants/Theme";
+import { useTheme } from "@/context/ThemeContext";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 
 interface ScreenHeaderBtnProps {
   iconName: keyof typeof Ionicons.glyphMap;
@@ -43,7 +36,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: BorderRadius.md,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

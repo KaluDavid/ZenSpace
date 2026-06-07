@@ -1,38 +1,27 @@
-/**
- * ZenSpace — MeditationCard Component
- * Displays a session card with title, duration, category badge, and favorite toggle.
- */
-
-import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/context/ThemeContext';
-import { MeditationSession } from '@/types';
-import { BorderRadius, Typography, Spacing, Shadow } from '@/constants/Theme';
+import { BorderRadius, Shadow, Spacing, Typography } from "@/constants/Theme";
+import { useTheme } from "@/context/ThemeContext";
+import { MeditationSession } from "@/types";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  morning: '#f6c90e',
-  sleep: '#6c63ff',
-  anxiety: '#00b894',
-  focus: '#0984e3',
-  breathing: '#00cec9',
-  stress: '#e17055',
-  mindfulness: '#a29bfe',
+  morning: "#f6c90e",
+  sleep: "#6c63ff",
+  anxiety: "#00b894",
+  focus: "#0984e3",
+  breathing: "#00cec9",
+  stress: "#e17055",
+  mindfulness: "#a29bfe",
 };
 
 const CATEGORY_EMOJIS: Record<string, string> = {
-  morning: '🌅',
-  sleep: '🌙',
-  anxiety: '🌿',
-  focus: '🎯',
-  breathing: '💨',
-  stress: '☁️',
-  mindfulness: '🧘',
+  morning: "🌅",
+  sleep: "🌙",
+  anxiety: "🌿",
+  focus: "🎯",
+  breathing: "💨",
+  stress: "☁️",
+  mindfulness: "🧘",
 };
 
 interface MeditationCardProps {
@@ -52,7 +41,7 @@ export default function MeditationCard({
 }: MeditationCardProps) {
   const { colors } = useTheme();
   const categoryColor = CATEGORY_COLORS[session.category] ?? colors.primary;
-  const emoji = CATEGORY_EMOJIS[session.category] ?? '✨';
+  const emoji = CATEGORY_EMOJIS[session.category] ?? "✨";
 
   if (horizontal) {
     return (
@@ -66,7 +55,9 @@ export default function MeditationCard({
         activeOpacity={0.85}
       >
         {/* Color bar */}
-        <View style={[styles.horizontalAccent, { backgroundColor: categoryColor }]} />
+        <View
+          style={[styles.horizontalAccent, { backgroundColor: categoryColor }]}
+        />
 
         <View style={styles.horizontalContent}>
           <View style={styles.horizontalTop}>
@@ -82,7 +73,7 @@ export default function MeditationCard({
             <View
               style={[
                 styles.categoryBadge,
-                { backgroundColor: categoryColor + '22' },
+                { backgroundColor: categoryColor + "22" },
               ]}
             >
               <Text style={[styles.categoryText, { color: categoryColor }]}>
@@ -97,9 +88,9 @@ export default function MeditationCard({
 
         <TouchableOpacity onPress={onFavoriteToggle} style={styles.favoriteBtn}>
           <Ionicons
-            name={isFavorite ? 'heart' : 'heart-outline'}
+            name={isFavorite ? "heart" : "heart-outline"}
             size={22}
-            color={isFavorite ? '#e17055' : colors.textMuted}
+            color={isFavorite ? "#e17055" : colors.textMuted}
           />
         </TouchableOpacity>
       </TouchableOpacity>
@@ -118,26 +109,31 @@ export default function MeditationCard({
       activeOpacity={0.85}
     >
       {/* Header color band */}
-      <View style={[styles.cardHeader, { backgroundColor: categoryColor + '33' }]}>
+      <View
+        style={[styles.cardHeader, { backgroundColor: categoryColor + "33" }]}
+      >
         <Text style={styles.cardEmoji}>{emoji}</Text>
         <TouchableOpacity onPress={onFavoriteToggle} style={styles.cardFavBtn}>
           <Ionicons
-            name={isFavorite ? 'heart' : 'heart-outline'}
+            name={isFavorite ? "heart" : "heart-outline"}
             size={20}
-            color={isFavorite ? '#e17055' : colors.textMuted}
+            color={isFavorite ? "#e17055" : colors.textMuted}
           />
         </TouchableOpacity>
       </View>
 
       <View style={styles.cardBody}>
-        <Text style={[styles.cardTitle, { color: colors.text }]} numberOfLines={2}>
+        <Text
+          style={[styles.cardTitle, { color: colors.text }]}
+          numberOfLines={2}
+        >
           {session.title}
         </Text>
         <View style={styles.cardFooter}>
           <View
             style={[
               styles.categoryBadge,
-              { backgroundColor: categoryColor + '22' },
+              { backgroundColor: categoryColor + "22" },
             ]}
           >
             <Text style={[styles.categoryText, { color: categoryColor }]}>
@@ -158,25 +154,25 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
-    overflow: 'hidden',
+    overflow: "hidden",
     flex: 1,
     minWidth: 160,
-    maxWidth: '48%',
+    maxWidth: "48%",
   },
   cardHeader: {
     height: 80,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
     paddingHorizontal: Spacing[3],
   },
   cardEmoji: {
     fontSize: 32,
     flex: 1,
-    textAlign: 'center',
+    textAlign: "center",
   },
   cardFavBtn: {
-    position: 'absolute',
+    position: "absolute",
     top: 8,
     right: 8,
     padding: 4,
@@ -191,23 +187,23 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   cardFooter: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 
   // Horizontal card
   horizontalCard: {
-    flexDirection: 'row',
+    flexDirection: "row",
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
-    overflow: 'hidden',
-    alignItems: 'center',
+    overflow: "hidden",
+    alignItems: "center",
     marginBottom: Spacing[3],
   },
   horizontalAccent: {
     width: 4,
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
   },
   horizontalContent: {
     flex: 1,
@@ -215,13 +211,13 @@ const styles = StyleSheet.create({
     gap: Spacing[1],
   },
   horizontalTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: Spacing[2],
   },
   horizontalMeta: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: Spacing[2],
   },
   emoji: {
@@ -240,7 +236,7 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: Typography.fontSize.xs,
     fontWeight: Typography.fontWeight.semiBold,
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
   },
   duration: {
     fontSize: Typography.fontSize.xs,

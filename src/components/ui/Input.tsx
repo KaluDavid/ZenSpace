@@ -1,21 +1,16 @@
-/**
- * ZenSpace — Input Component
- * Styled text input with label, error state, and icon support.
- */
-
-import React, { useState } from 'react';
+import { BorderRadius, Spacing, Typography } from "@/constants/Theme";
+import { useTheme } from "@/context/ThemeContext";
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
 import {
-  View,
+  StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  ViewStyle,
   TextInputProps,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/context/ThemeContext';
-import { Typography, BorderRadius, Spacing } from '@/constants/Theme';
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface InputProps extends TextInputProps {
   label?: string;
@@ -63,8 +58,8 @@ export default function Input({
             borderColor: error
               ? colors.error
               : isFocused
-              ? colors.primary
-              : colors.border,
+                ? colors.primary
+                : colors.border,
           },
         ]}
       >
@@ -99,7 +94,7 @@ export default function Input({
             style={styles.rightIcon}
           >
             <Ionicons
-              name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
               size={20}
               color={colors.textMuted}
             />
@@ -132,8 +127,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   inputRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1.5,
     borderRadius: BorderRadius.md,
     paddingHorizontal: Spacing[3],

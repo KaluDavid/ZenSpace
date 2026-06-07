@@ -1,22 +1,16 @@
-/**
- * ZenSpace — Button Component
- * Supports primary, secondary, outline, and ghost variants.
- */
-
-import React from 'react';
+import { BorderRadius, Typography } from "@/constants/Theme";
+import { useTheme } from "@/context/ThemeContext";
 import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
   ActivityIndicator,
-  ViewStyle,
+  StyleSheet,
+  Text,
   TextStyle,
-} from 'react-native';
-import { useTheme } from '@/context/ThemeContext';
-import { BorderRadius, Typography, Spacing } from '@/constants/Theme';
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
+type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps {
   label: string;
@@ -33,8 +27,8 @@ interface ButtonProps {
 export default function Button({
   label,
   onPress,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   loading = false,
   disabled = false,
   fullWidth = true,
@@ -46,39 +40,39 @@ export default function Button({
   const getContainerStyle = (): ViewStyle => {
     const base: ViewStyle = {
       borderRadius: BorderRadius.lg,
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'row',
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
       gap: 8,
     };
 
     // Size
-    if (size === 'sm') {
+    if (size === "sm") {
       Object.assign(base, { paddingVertical: 8, paddingHorizontal: 16 });
-    } else if (size === 'md') {
+    } else if (size === "md") {
       Object.assign(base, { paddingVertical: 14, paddingHorizontal: 24 });
     } else {
       Object.assign(base, { paddingVertical: 18, paddingHorizontal: 28 });
     }
 
-    if (fullWidth) base.width = '100%';
+    if (fullWidth) base.width = "100%";
 
     // Variant backgrounds
     switch (variant) {
-      case 'primary':
+      case "primary":
         return { ...base, backgroundColor: colors.primary };
-      case 'secondary':
+      case "secondary":
         return { ...base, backgroundColor: colors.surfaceSecondary };
-      case 'outline':
+      case "outline":
         return {
           ...base,
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
           borderWidth: 1.5,
           borderColor: colors.primary,
         };
-      case 'ghost':
-        return { ...base, backgroundColor: 'transparent' };
-      case 'danger':
+      case "ghost":
+        return { ...base, backgroundColor: "transparent" };
+      case "danger":
         return { ...base, backgroundColor: colors.error };
     }
   };
@@ -86,17 +80,17 @@ export default function Button({
   const getTextStyle = (): TextStyle => {
     const base: TextStyle = {
       fontWeight: Typography.fontWeight.semiBold,
-      fontSize: size === 'sm' ? Typography.fontSize.sm : Typography.fontSize.md,
+      fontSize: size === "sm" ? Typography.fontSize.sm : Typography.fontSize.md,
     };
 
     switch (variant) {
-      case 'primary':
-      case 'danger':
-        return { ...base, color: '#ffffff' };
-      case 'secondary':
+      case "primary":
+      case "danger":
+        return { ...base, color: "#ffffff" };
+      case "secondary":
         return { ...base, color: colors.text };
-      case 'outline':
-      case 'ghost':
+      case "outline":
+      case "ghost":
         return { ...base, color: colors.primary };
     }
   };
@@ -115,7 +109,11 @@ export default function Button({
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === 'primary' || variant === 'danger' ? '#fff' : colors.primary}
+          color={
+            variant === "primary" || variant === "danger"
+              ? "#fff"
+              : colors.primary
+          }
         />
       ) : (
         <Text style={[getTextStyle(), textStyle]}>{label}</Text>

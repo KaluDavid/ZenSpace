@@ -1,11 +1,7 @@
-/**
- * ZenSpace — Custom Hooks
- */
-
-import { useState, useEffect, useCallback } from 'react';
-import { getDailyQuote } from '@/utils/api';
-import { getFavorites, toggleFavorite } from '@/utils/storage';
-import { DailyQuote, MeditationSession } from '@/types';
+import { DailyQuote, MeditationSession } from "@/types";
+import { getDailyQuote } from "@/utils/api";
+import { getFavorites, toggleFavorite } from "@/utils/storage";
+import { useCallback, useEffect, useState } from "react";
 
 // ─── useQuote ──────────────────────────────────────────────────────────────
 
@@ -32,7 +28,7 @@ export function useQuote(): UseQuoteReturn {
       const q = await getDailyQuote();
       setQuote(q);
     } catch (e: any) {
-      setError(e?.message ?? 'Failed to load quote.');
+      setError(e?.message ?? "Failed to load quote.");
     } finally {
       setLoading(false);
     }

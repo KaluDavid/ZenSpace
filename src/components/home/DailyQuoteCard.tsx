@@ -1,14 +1,7 @@
-/**
- * ZenSpace — DailyQuoteCard Component
- * Displays the daily quote fetched from the external API.
- * Grading requirement: Task 20 — evidence-api-ux.png
- */
-
-import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import { useTheme } from '@/context/ThemeContext';
-import { DailyQuote } from '@/types';
-import { BorderRadius, Typography, Spacing, Shadow } from '@/constants/Theme';
+import { BorderRadius, Shadow, Spacing, Typography } from "@/constants/Theme";
+import { useTheme } from "@/context/ThemeContext";
+import { DailyQuote } from "@/types";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 interface DailyQuoteCardProps {
   quote: DailyQuote | null;
@@ -16,17 +9,15 @@ interface DailyQuoteCardProps {
   error?: string;
 }
 
-export default function DailyQuoteCard({ quote, loading, error }: DailyQuoteCardProps) {
+export default function DailyQuoteCard({
+  quote,
+  loading,
+  error,
+}: DailyQuoteCardProps) {
   const { colors } = useTheme();
 
   return (
-    <View
-      style={[
-        styles.card,
-        { backgroundColor: colors.primary },
-        Shadow.md,
-      ]}
-    >
+    <View style={[styles.card, { backgroundColor: colors.primary }, Shadow.md]}>
       {/* API source indicator */}
       <View style={styles.apiTag}>
         <Text style={styles.apiTagText}>✦ Daily Wisdom</Text>
@@ -56,43 +47,43 @@ const styles = StyleSheet.create({
     marginBottom: Spacing[6],
   },
   apiTag: {
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    alignSelf: 'flex-start',
+    backgroundColor: "rgba(255,255,255,0.2)",
+    alignSelf: "flex-start",
     paddingHorizontal: 10,
     paddingVertical: 3,
     borderRadius: BorderRadius.full,
     marginBottom: Spacing[3],
   },
   apiTagText: {
-    color: 'rgba(255,255,255,0.9)',
+    color: "rgba(255,255,255,0.9)",
     fontSize: Typography.fontSize.xs,
     fontWeight: Typography.fontWeight.semiBold,
     letterSpacing: 1,
   },
   quoteText: {
-    color: '#ffffff',
+    color: "#ffffff",
     fontSize: Typography.fontSize.md,
-    fontStyle: 'italic',
+    fontStyle: "italic",
     lineHeight: 26,
     marginBottom: Spacing[3],
   },
   authorText: {
-    color: 'rgba(255,255,255,0.75)',
+    color: "rgba(255,255,255,0.75)",
     fontSize: Typography.fontSize.sm,
     fontWeight: Typography.fontWeight.medium,
   },
   loadingContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     gap: Spacing[2],
     paddingVertical: Spacing[3],
   },
   loadingText: {
-    color: 'rgba(255,255,255,0.7)',
+    color: "rgba(255,255,255,0.7)",
     fontSize: Typography.fontSize.sm,
   },
   errorText: {
-    color: 'rgba(255,255,255,0.7)',
+    color: "rgba(255,255,255,0.7)",
     fontSize: Typography.fontSize.sm,
-    fontStyle: 'italic',
+    fontStyle: "italic",
   },
 });

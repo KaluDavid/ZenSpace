@@ -1,8 +1,3 @@
-/**
- * AuthContext — Global authentication state management
- * Persists user session via AsyncStorage.
- */
-
 import { User } from "@/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {

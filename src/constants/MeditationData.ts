@@ -1,8 +1,3 @@
-/**
- * ZenSpace — Static Meditation Content
- * In a production app this would come from a CMS/API.
- */
-
 import { MeditationSession } from "@/types";
 
 export const MEDITATION_SESSIONS: MeditationSession[] = [
