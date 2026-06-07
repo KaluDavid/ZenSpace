@@ -1,40 +1,31 @@
-/**
- * ZenSpace — External API Integration
- *
- * Uses the ZenQuotes API (https://zenquotes.io/api/random)
- * — a free, public REST API that returns motivational quotes.
- * No API key required.
- *
- * Grading requirement: Task 19 — API integration file.
- */
+import { DailyQuote } from "@/types";
 
-import { DailyQuote } from '@/types';
-
-const QUOTE_API_URL = 'https://zenquotes.io/api/random';
+const QUOTE_API_URL = "https://zenquotes.io/api/random";
 const FALLBACK_QUOTES: DailyQuote[] = [
   {
     id: 1,
-    quote: 'The present moment is the only moment available to us, and it is the door to all moments.',
-    author: 'Thich Nhat Hanh',
-    category: 'mindfulness',
+    quote:
+      "The present moment is the only moment available to us, and it is the door to all moments.",
+    author: "Thich Nhat Hanh",
+    category: "mindfulness",
   },
   {
     id: 2,
-    quote: 'Wherever you are, be there totally.',
-    author: 'Eckhart Tolle',
-    category: 'presence',
+    quote: "Wherever you are, be there totally.",
+    author: "Eckhart Tolle",
+    category: "presence",
   },
   {
     id: 3,
-    quote: 'Peace comes from within. Do not seek it without.',
-    author: 'Buddha',
-    category: 'peace',
+    quote: "Peace comes from within. Do not seek it without.",
+    author: "Buddha",
+    category: "peace",
   },
   {
     id: 4,
-    quote: 'In the middle of difficulty lies opportunity.',
-    author: 'Albert Einstein',
-    category: 'resilience',
+    quote: "In the middle of difficulty lies opportunity.",
+    author: "Albert Einstein",
+    category: "resilience",
   },
 ];
 
@@ -50,7 +41,7 @@ export async function fetchDailyQuote(): Promise<DailyQuote> {
     const response = await fetch(QUOTE_API_URL, {
       signal: controller.signal,
       headers: {
-        Accept: 'application/json',
+        Accept: "application/json",
       },
     });
 
@@ -66,13 +57,14 @@ export async function fetchDailyQuote(): Promise<DailyQuote> {
 
     return {
       id: Date.now(),
-      quote: raw.q || 'Be present.',
-      author: raw.a || 'Unknown',
-      category: raw.c || 'mindfulness',
+      quote: raw.q || "Be present.",
+      author: raw.a || "Unknown",
+      category: raw.c || "mindfulness",
     };
   } catch (error) {
     // Network error or timeout — use fallback
-    const fallback = FALLBACK_QUOTES[Math.floor(Math.random() * FALLBACK_QUOTES.length)];
+    const fallback =
+      FALLBACK_QUOTES[Math.floor(Math.random() * FALLBACK_QUOTES.length)];
     return fallback;
   }
 }
@@ -81,10 +73,10 @@ export async function fetchDailyQuote(): Promise<DailyQuote> {
  * Caches the fetched quote to AsyncStorage to avoid repeated API calls.
  * Returns cached quote if fetched today.
  */
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const QUOTE_CACHE_KEY = '@zenspace_daily_quote';
-const QUOTE_DATE_KEY = '@zenspace_quote_date';
+const QUOTE_CACHE_KEY = "@zenspace_daily_quote";
+const QUOTE_DATE_KEY = "@zenspace_quote_date";
 
 export async function getDailyQuote(): Promise<DailyQuote> {
   try {
