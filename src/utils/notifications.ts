@@ -1,14 +1,7 @@
-/**
- * ZenSpace — Notification Service
- *
- * Grading requirement: Task 26 — notifications implementation file.
- * Uses expo-notifications to schedule local notifications.
- */
-
-import * as Notifications from 'expo-notifications';
-import * as Device from 'expo-device';
-import { Platform } from 'react-native';
-import { Reminder } from '@/types';
+import { Reminder } from "@/types";
+import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
+import { Platform } from "react-native";
 
 // Configure how notifications appear when app is in foreground
 Notifications.setNotificationHandler({
@@ -32,23 +25,23 @@ export async function requestNotificationPermissions(): Promise<boolean> {
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
 
-  if (existingStatus !== 'granted') {
+  if (existingStatus !== "granted") {
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
   }
 
-  if (finalStatus !== 'granted') {
+  if (finalStatus !== "granted") {
     return false;
   }
 
   // Android requires a notification channel
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('zenspace-reminders', {
-      name: 'ZenSpace Reminders',
+  if (Platform.OS === "android") {
+    await Notifications.setNotificationChannelAsync("zenspace-reminders", {
+      name: "ZenSpace Reminders",
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#6c63ff',
-      sound: 'default',
+      lightColor: "#6c63ff",
+      sound: "default",
     });
   }
 
@@ -59,17 +52,19 @@ export async function requestNotificationPermissions(): Promise<boolean> {
  * Schedule a local notification for a given reminder.
  * Returns the notification identifier.
  */
-export async function scheduleNotification(reminder: Reminder): Promise<string | null> {
+export async function scheduleNotification(
+  reminder: Reminder,
+): Promise<string | null> {
   try {
     const granted = await requestNotificationPermissions();
     if (!granted) return null;
 
-    const [hours, minutes] = reminder.time.split(':').map(Number);
+    const [hours, minutes] = reminder.time.split(":").map(Number);
 
     const notificationId = await Notifications.scheduleNotificationAsync({
       content: {
-        title: '🧘 ZenSpace Reminder',
-        body: reminder.title || 'Time for your mindfulness session.',
+        title: "🧘 ZenSpace Reminder",
+        body: reminder.title || "Time for your mindfulness session.",
         sound: true,
         data: { reminderId: reminder.id },
       },
@@ -82,7 +77,7 @@ export async function scheduleNotification(reminder: Reminder): Promise<string |
 
     return notificationId;
   } catch (error) {
-    console.error('Failed to schedule notification:', error);
+    console.error("Failed to schedule notification:", error);
     return null;
   }
 }
@@ -90,7 +85,9 @@ export async function scheduleNotification(reminder: Reminder): Promise<string |
 /**
  * Cancel a previously scheduled notification.
  */
-export async function cancelNotification(notificationId: string): Promise<void> {
+export async function cancelNotification(
+  notificationId: string,
+): Promise<void> {
   try {
     await Notifications.cancelScheduledNotificationAsync(notificationId);
   } catch {
@@ -118,15 +115,15 @@ export async function triggerTestNotification(): Promise<void> {
   try {
     const granted = await requestNotificationPermissions();
     if (!granted) {
-      throw new Error('Notification permissions not granted');
+      throw new Error("Notification permissions not granted");
     }
 
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: '🧘 ZenSpace',
-        body: 'Your mindfulness session is ready. Take a deep breath and begin.',
+        title: "🧘 ZenSpace",
+        body: "Your mindfulness session is ready. Take a deep breath and begin.",
         sound: true,
-        data: { type: 'test' },
+        data: { type: "test" },
       },
       trigger: null, // null = send immediately
     });

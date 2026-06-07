@@ -1,20 +1,13 @@
-/**
- * ZenSpace — Local Storage Utilities (AsyncStorage)
- *
- * Grading requirement: Task 16 — local storage implementation file.
- * Handles favorites persistence, user preferences, and reminder storage.
- */
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { MeditationSession, Reminder, AppSettings } from '@/types';
+import { AppSettings, MeditationSession, Reminder } from "@/types";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // ─── Storage Keys ─────────────────────────────────────────────────────────
 const KEYS = {
-  FAVORITES: '@zenspace_favorites',
-  REMINDERS: '@zenspace_reminders',
-  SETTINGS: '@zenspace_settings',
-  STREAK: '@zenspace_streak',
-  LAST_OPEN: '@zenspace_last_open',
+  FAVORITES: "@zenspace_favorites",
+  REMINDERS: "@zenspace_reminders",
+  SETTINGS: "@zenspace_settings",
+  STREAK: "@zenspace_streak",
+  LAST_OPEN: "@zenspace_last_open",
 };
 
 // ─── Favorites ─────────────────────────────────────────────────────────────
@@ -64,7 +57,9 @@ export async function removeFavorite(sessionId: string): Promise<void> {
  * Toggle favorite status — add if not favorited, remove if already favorited.
  * Returns the new favorite state (true = now favorited).
  */
-export async function toggleFavorite(session: MeditationSession): Promise<boolean> {
+export async function toggleFavorite(
+  session: MeditationSession,
+): Promise<boolean> {
   const current = await getFavorites();
   const isFav = current.some((s) => s.id === session.id);
 
@@ -117,9 +112,9 @@ export async function deleteReminder(reminderId: string): Promise<void> {
 // ─── App Settings ──────────────────────────────────────────────────────────
 
 const DEFAULT_SETTINGS: AppSettings = {
-  theme: 'light',
+  theme: "light",
   notificationsEnabled: true,
-  dailyReminderTime: '08:00',
+  dailyReminderTime: "08:00",
   soundEnabled: true,
 };
 
@@ -132,10 +127,15 @@ export async function getSettings(): Promise<AppSettings> {
   }
 }
 
-export async function saveSettings(settings: Partial<AppSettings>): Promise<void> {
+export async function saveSettings(
+  settings: Partial<AppSettings>,
+): Promise<void> {
   try {
     const current = await getSettings();
-    await AsyncStorage.setItem(KEYS.SETTINGS, JSON.stringify({ ...current, ...settings }));
+    await AsyncStorage.setItem(
+      KEYS.SETTINGS,
+      JSON.stringify({ ...current, ...settings }),
+    );
   } catch {
     // ignore
   }
