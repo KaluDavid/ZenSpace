@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "foodie-app",
-    "slug": "foodie-app",
+    "name": "ZenSpace",
+    "slug": "zenspace",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "foodieapp",
+    "scheme": "zenspace",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
